@@ -42,7 +42,8 @@
 }
 
 .reloadBtn,
-.resetBtn {
+.resetBtn,
+.pauseBtn {
   font-size: 0.75rem;
   padding: 5px;
   border-radius: 10px;
@@ -52,16 +53,17 @@
 }
 
 .reloadBtn:hover,
-.resetBtn:hover {
+.resetBtn:hover,
+.pauseBtn:hover:enabled {
   background-color: black;
   color: white;
 }
 
 .reloadBtn:active,
-.resetBtn:active {
+.resetBtn:active,
+.pauseBtn:active:enabled {
   background-color: white;
   color: black;
-  /* border: 1px solid black; */
 }
 
 .reloadBtn {
@@ -69,6 +71,10 @@
 }
 
 .resetBtn {
+  margin: 0 3px;
+}
+
+.pauseBtn {
   margin-left: 3px;
 }
 

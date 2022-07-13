@@ -1,28 +1,60 @@
 let resetBtn = document.querySelector(".resetBtn");
 let reloadBtn = document.querySelector(".reloadBtn");
+let pauseBtn = document.querySelector(".pauseBtn");
 
 let loadingBar = document.querySelector(".loadingBar");
-// let percentage = document.querySelector(".percentage");
 let loadingText = document.querySelector(".loadingText");
 
-let timer;
+let pause = false;
+let number = 0;
 
-// refresh the page for reset
+// have this to run when the page load up
+let timer = setInterval(() => {
+  loadingText.innerHTML = `${number++}%`;
+  loadingBar.style.width = String(number) + "%";
+  if(number > 100) {
+    clearInterval(timer);
+    loadingText.innerHTML = "Finished!";
+    pauseBtn.disabled = true;
+  }
+}, 25);
+
+// reset all the variables
+let resetVar = () => {
+  clearInterval(timer);
+  number = 0;
+  loadingText.innerHTML = `${number}%`;
+  loadingBar.style.width = "0%";
+  pause = false;
+  pauseBtn.innerHTML = "Pause";
+  pauseBtn.disabled = false;
+};
+
 resetBtn.addEventListener('click', function() {
-  location.reload();
+  resetVar();
 });
 
 reloadBtn.addEventListener('click', function() {
-  let number = 0;
-  
-  clearInterval(timer);
+  resetVar();
 
   timer = setInterval(() => {
-    loadingText.innerHTML = `${number++}%`;
-    loadingBar.style.width = String(number) + "%";
+    if(!pause) {
+      loadingText.innerHTML = `${number++}%`;
+      loadingBar.style.width = String(number) + "%";
+    }
     if(number > 100) {
       clearInterval(timer);
       loadingText.innerHTML = "Finished!";
+      pauseBtn.disabled = true;
     }
-  }, 50);
+  }, 25);
+});
+
+pauseBtn.addEventListener('click', function() {
+  pause = !pause;
+  if(pause) {
+    pauseBtn.innerHTML = "Resume";
+  }else{
+    pauseBtn.innerHTML = "Pause";
+  }
 });
