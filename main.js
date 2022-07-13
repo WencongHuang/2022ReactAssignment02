@@ -10,8 +10,10 @@ let number = 0;
 
 // have this to run when the page load up
 let timer = setInterval(() => {
-  loadingText.innerHTML = `${number++}%`;
-  loadingBar.style.width = String(number) + "%";
+  if(!pause) {
+    loadingText.innerHTML = `${number++}%`;
+    loadingBar.style.width = String(number) + "%";
+  }
   if(number >= 100) {
     clearInterval(timer);
     loadingText.innerHTML = "Finished!";
