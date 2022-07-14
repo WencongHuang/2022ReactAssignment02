@@ -11,7 +11,8 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body onload="timer()">
-  <div class="webPages">
+
+  <div class="sections" id="section1">
     <div class="loadingBackground">
       <div class="loadingText">0%</div>
       <div class="loadingBar"></div>
@@ -21,8 +22,23 @@
       <button class="resetBtn">Reset</button>
       <button class="pauseBtn">Pause</button>
     </div>
+    <a href="#section2" class="nextSection">Next Section</a>
+    <div class="arrowDown"></div>
   </div>
+
+  <div class="sections" id="section2">
+    <a href="#section1" class="previousSection">Previous Section</a>
+    <div class="arrowUp"></div>
+    <div class="searchBoxContainer">
+      <input class="searchBoxInput" type="text" placeholder="Where are you from?">
+      <ul class="suggestionList">
+        <!-- New element goes to here upon user type in letters -->
+      </ul>
+    </div>
+  </div>
+
   <footer>&copy; Edmond W. Huang 2022</footer>
+
   <script src="main.js"></script>
 </body>
 </html>
