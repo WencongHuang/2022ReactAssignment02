@@ -133,9 +133,10 @@ let searchBoxInput = document.querySelector(".searchBoxInput");
 let suggestionList = document.querySelector(".suggestionList");
 
 searchBoxInput.addEventListener('keyup', function() {
+  // Clear the list
+  suggestionList.innerHTML = "";
+  
   if(!searchBoxInput.value) {
-    // Clear the list if no input
-    suggestionList.innerHTML = "";
     return;
   }
 
