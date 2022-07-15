@@ -129,26 +129,21 @@ let countries = ["Afghanistan","Albania","Algeria","Andorra","Angola","Anguilla"
 "United States of America","Uruguay","Uzbekistan","Vanuatu","Vatican City",
 "Venezuela","Vietnam","Virgin Islands (US)","Yemen","Zambia","Zimbabwe"];
 
-// querySelector or getElementByClassName?
-// let searchBoxInput = document.querySelector(".searchBoxInput");
-// let suggestionList = document.querySelector(".suggestionList");
+let searchBoxInput = document.querySelector(".searchBoxInput");
+let suggestionList = document.querySelector(".suggestionList");
 
-// searchBoxInput.addEventListener('keydown', function() {
-//   // if(!searchBoxInput.value) {
-//   //   return;
-//   // }
-//   console.log(searchBoxInput.value);
+searchBoxInput.addEventListener('keyup', function() {
+  if(!searchBoxInput.value) {
+    // Clear the list if no input
+    suggestionList.innerHTML = "";
+    return;
+  }
 
-//   // CLEAR THE LIST
-//   for(let i = 0; i < suggestionList.length; i++) {
-//     suggestionList.innerHTML = "";
-//   }
-
-//   for(let i = 0; i < countries.length; i++) {
-//     if(countries[i].substring(0, searchBoxInput.value.length).toUpperCase() == searchBoxInput.value.toUpperCase()) {
-//       let match = document.createElement("li");
-//       match.innerHTML = countries[i];
-//       suggestionList.appendChild(match);
-//     }
-//   }
-// });
+  for(let i = 0; i < countries.length; i++) {
+    if(countries[i].substring(0, searchBoxInput.value.length).toUpperCase() == searchBoxInput.value.toUpperCase()) {
+      let match = document.createElement("li");
+      match.innerHTML = countries[i];
+      suggestionList.appendChild(match);
+    }
+  }
+});
