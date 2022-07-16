@@ -52,6 +52,8 @@ let timer = setInterval(() => {
   }
 }, 25);
 
+window.onload = () => timer;
+
 // reset all the variables
 let resetVar = () => {
   clearInterval(timer);
@@ -131,20 +133,37 @@ let countries = ["Afghanistan","Albania","Algeria","Andorra","Angola","Anguilla"
 
 let searchBoxInput = document.querySelector(".searchBoxInput");
 let suggestionList = document.querySelector(".suggestionList");
+// use getElementsByClassName for live action
+let suggestions = document.getElementsByClassName("suggestions");
 
 searchBoxInput.addEventListener('keyup', function() {
   // Clear the list
   suggestionList.innerHTML = "";
   
+  // If there is no input, then no suggestions
   if(!searchBoxInput.value) {
+    suggestionList.style.visibility = "hidden";
     return;
   }
 
   for(let i = 0; i < countries.length; i++) {
     if(countries[i].substring(0, searchBoxInput.value.length).toUpperCase() == searchBoxInput.value.toUpperCase()) {
       let match = document.createElement("li");
+      match.setAttribute("class", "suggestions");
       match.innerHTML = countries[i];
+      match.addEventListener('click', function() {
+        suggestionList.innerHTML = "";
+        suggestionList.style.visibility = "hidden";
+        searchBoxInput.value = match.innerHTML;
+      });
       suggestionList.appendChild(match);
     }
+  }
+
+  // If there is no suggestions, then do NOT show the 'ul' element
+  if(suggestions.length < 1) {
+    suggestionList.style.visibility = "hidden";
+  }else{
+    suggestionList.style.visibility = "visible";
   }
 });
